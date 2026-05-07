@@ -46,6 +46,7 @@ export default function AntreanPesananPage() {
     } else {
       alert("Gagal memperbarui status");
     }
+    console.log("Mark as selesai:", id, "Error:", error);
   };
 
   return (

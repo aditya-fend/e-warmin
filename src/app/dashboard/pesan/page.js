@@ -23,7 +23,7 @@ export default function PesanPage() {
 
   // Filter produk berdasarkan pencarian
   const filteredProducts = products.filter((p) =>
-    p.name.toLowerCase().includes(search.toLowerCase())
+    p.name.toLowerCase().includes(search.toLowerCase()),
   );
 
   const updateCart = (id, delta) => {
@@ -59,8 +59,7 @@ export default function PesanPage() {
         items: orderItems,
         total_price: calculateTotal(),
         status: "proses",
-        // Mengambil kategori pertama dari item pertama untuk statistik dashboard sederhana
-        category: products.find(p => p.id === Object.keys(cart)[0])?.category || "umum"
+        created_at: new Date().toISOString(),
       },
     ]);
 
@@ -77,7 +76,10 @@ export default function PesanPage() {
       {/* 1. INPUT SEARCH (STIKY TOP) */}
       <div className="sticky top-0 bg-white border-b-4 border-black p-4 z-10">
         <div className="max-w-4xl mx-auto flex gap-4 items-center">
-          <Link href="/dashboard" className="border-2 border-black p-2 font-black text-[10px]">
+          <Link
+            href="/dashboard"
+            className="border-2 border-black p-2 font-black text-[10px]"
+          >
             Kembali
           </Link>
           <input
@@ -106,7 +108,6 @@ export default function PesanPage() {
                 <tr key={p.id} className="hover:bg-gray-50">
                   <td className="p-3">
                     <div className="font-black">{p.name}</div>
-                    <div className="text-[9px] text-gray-500">{p.category}</div>
                   </td>
                   <td className="p-3 text-right font-mono font-bold">
                     {p.price.toLocaleString("id-ID")}
@@ -135,7 +136,9 @@ export default function PesanPage() {
             </tbody>
           </table>
           {filteredProducts.length === 0 && (
-            <div className="p-10 text-center font-bold text-gray-400">MENU TIDAK DITEMUKAN</div>
+            <div className="p-10 text-center font-bold text-gray-400">
+              MENU TIDAK DITEMUKAN
+            </div>
           )}
         </div>
       </div>
@@ -144,7 +147,9 @@ export default function PesanPage() {
       <div className="fixed bottom-0 left-0 right-0 bg-black text-white p-6 z-20">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <div>
-            <p className="text-[10px] font-bold text-gray-400 tracking-widest">TOTAL PEMBAYARAN</p>
+            <p className="text-[10px] font-bold text-gray-400 tracking-widest">
+              TOTAL PEMBAYARAN
+            </p>
             <p className="text-2xl font-mono font-black">
               RP {calculateTotal().toLocaleString("id-ID")}
             </p>
