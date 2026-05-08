@@ -9,7 +9,7 @@ export default function ManajemenProdukPage() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("makanan");
   const [loading, setLoading] = useState(false);
-  
+
   // State untuk mode edit
   const [editId, setEditId] = useState(null);
 
@@ -37,7 +37,7 @@ export default function ManajemenProdukPage() {
         .from("products")
         .update(payload)
         .eq("id", editId);
-      
+
       if (!error) {
         setEditId(null);
         resetForm();
@@ -46,9 +46,7 @@ export default function ManajemenProdukPage() {
       }
     } else {
       // LOGIKA INSERT
-      const { error } = await supabase
-        .from("products")
-        .insert([payload]);
+      const { error } = await supabase.from("products").insert([payload]);
 
       if (!error) {
         resetForm();
@@ -87,9 +85,7 @@ export default function ManajemenProdukPage() {
     <div className="min-h-screen bg-white text-black p-6 space-y-10 font-sans uppercase">
       {/* HEADER */}
       <div className="flex justify-between items-center border-b-4 border-black pb-4">
-        <Link href="/dashboard" className="text-[10px] font-black hover:bg-black hover:text-white px-2 py-1 border border-black transition-none">
-          ← KEMBALI
-        </Link>
+        {" "}
         <h1 className="text-2xl font-black tracking-tighter">DATA PRODUK</h1>
       </div>
 
@@ -100,10 +96,12 @@ export default function ManajemenProdukPage() {
             <h2 className="text-xs font-black tracking-widest border-b border-black pb-2">
               {editId ? "MODE UBAH DATA" : "INPUT PRODUK BARU"}
             </h2>
-            
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-[10px] font-black mb-1">NAMA ITEM</label>
+                <label className="block text-[10px] font-black mb-1">
+                  NAMA ITEM
+                </label>
                 <input
                   required
                   type="text"
@@ -114,7 +112,9 @@ export default function ManajemenProdukPage() {
               </div>
 
               <div>
-                <label className="block text-[10px] font-black mb-1">HARGA SATUAN</label>
+                <label className="block text-[10px] font-black mb-1">
+                  HARGA SATUAN
+                </label>
                 <input
                   required
                   type="number"
@@ -125,7 +125,9 @@ export default function ManajemenProdukPage() {
               </div>
 
               <div>
-                <label className="block text-[10px] font-black mb-1">KATEGORI</label>
+                <label className="block text-[10px] font-black mb-1">
+                  KATEGORI
+                </label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
@@ -173,7 +175,10 @@ export default function ManajemenProdukPage() {
             </thead>
             <tbody className="divide-y-2 divide-black">
               {products.map((p) => (
-                <tr key={p.id} className={editId === p.id ? "bg-yellow-50" : "bg-white"}>
+                <tr
+                  key={p.id}
+                  className={editId === p.id ? "bg-yellow-50" : "bg-white"}
+                >
                   <td className="p-3 font-black">{p.name}</td>
                   <td className="p-3 text-gray-500 font-bold">{p.category}</td>
                   <td className="p-3 text-right font-mono font-bold">

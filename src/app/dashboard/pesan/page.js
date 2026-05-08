@@ -76,12 +76,6 @@ export default function PesanPage() {
       {/* 1. INPUT SEARCH (STIKY TOP) */}
       <div className="sticky top-0 bg-white border-b-4 border-black p-4 z-10">
         <div className="max-w-4xl mx-auto flex gap-4 items-center">
-          <Link
-            href="/dashboard"
-            className="border-2 border-black p-2 font-black text-[10px]"
-          >
-            Kembali
-          </Link>
           <input
             type="text"
             placeholder="CARI MENU (MISAL: NASI)..."

@@ -55,7 +55,6 @@ export default function AntreanPesananPage() {
       <div className="border-b-4 border-black pb-4 flex justify-between items-end">
         <div>
           <h1 className="text-3xl font-black tracking-tighter">ANTREAN PESANAN</h1>
-          <p className="text-[10px] font-bold text-gray-500 tracking-[0.3em]">STATUS: PROSES (DALAM PENGERJAAN)</p>
         </div>
         <div className="text-right">
           <span className="text-[10px] font-black bg-black text-white px-2 py-1">

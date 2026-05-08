@@ -66,7 +66,7 @@ export default function LaporanPage() {
           <p className="text-[10px] font-bold text-gray-500 tracking-[0.2em]">REKAPITULASI TRANSAKSI TERMINAL</p>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex justify-between gap-2">
           <select 
             value={filterDays}
             onChange={(e) => setFilterDays(e.target.value)}
