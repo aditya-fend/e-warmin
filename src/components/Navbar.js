@@ -19,7 +19,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-xs font-bold uppercase tracking-widest hover:underline decoration-2 underline-offset-4 text-black"
+              className="text-[10px] font-bold uppercase tracking-widest hover:underline decoration-2 underline-offset-4 text-black"
             >
               {link.label}
             </Link>

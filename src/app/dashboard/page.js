@@ -75,9 +75,6 @@ export default function DashboardPage() {
       {/* STATS SECTION */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 border-2 border-black divide-x-0 sm:divide-x-2 divide-y-2 sm:divide-y-0 divide-black">
         {[
-          { label: "Makanan", value: stats.makanan },
-          { label: "Minuman", value: stats.minuman },
-          { label: "Snack", value: stats.snack },
           { label: "Total Pendapatan", value: stats.total, highlight: true },
         ].map((item, i) => (
           <div key={i} className={`p-6 ${item.highlight ? 'bg-black text-white' : 'bg-white text-black'}`}>
