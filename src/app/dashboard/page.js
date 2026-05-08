@@ -99,7 +99,6 @@ export default function DashboardPage() {
               <tr className="bg-gray-100 border-b-2 border-black font-black uppercase">
                 <th className="py-3 px-4">Waktu</th>
                 <th className="py-3 px-4">Order ID</th>
-                <th className="py-3 px-4">Kategori</th>
                 <th className="py-3 px-4 text-right">Total (Rp)</th>
                 <th className="py-3 px-4 text-center">Status</th>
               </tr>
@@ -109,7 +108,6 @@ export default function DashboardPage() {
                 <tr key={order.id} className="hover:bg-gray-50 transition-none">
                   <td className="py-3 px-4 font-medium">{new Date(order.created_at).toLocaleTimeString("id-ID", {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Jakarta'})}</td>
                   <td className="py-3 px-4 font-mono text-gray-500">#{order.id.slice(0, 8).toUpperCase()}</td>
-                  <td className="py-3 px-4 uppercase font-bold text-[10px]">{order.category || "Umum"}</td>
                   <td className="py-3 px-4 text-right font-mono font-bold">{order.total_price.toLocaleString("id-ID")}</td>
                   <td className="py-3 px-4 text-center">
                     <span className={`inline-block border-2 px-2 py-0.5 font-black text-[9px] uppercase ${

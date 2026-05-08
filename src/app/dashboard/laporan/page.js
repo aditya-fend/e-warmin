@@ -37,16 +37,26 @@ export default function LaporanPage() {
   const exportToCSV = () => {
     if (orders.length === 0) return alert("TIDAK ADA DATA UNTUK DIEXPORT");
 
-    const headers = ["Waktu", "ID Pesanan", "Total Harga", "Detail Pesanan"];
+    const totalPendapatan = orders.reduce((acc, curr) => acc + curr.total_price, 0);
+
+    const headers = ["Waktu", "ID Pesanan", "Total Harga (Rp)", "Detail Pesanan"];
+    
     const rows = orders.map((o) => [
-      new Date(o.created_at).toLocaleString("id-ID", { timeZone: "Asia/Jakarta" }),
-      o.id,
+      `"${new Date(o.created_at).toLocaleString("id-ID", { timeZone: "Asia/Jakarta" })}"`,
+      `"#${o.id.slice(0, 8).toUpperCase()}"`,
       o.total_price,
-      o.items.map((i) => `${i.name} (${i.qty})`).join(" | "),
+      `"${o.items.map((i) => `${i.name} (${i.qty})`).join(" | ")}"`,
     ]);
 
+    // Tambahkan baris total
+    const footerRows = [
+      ["", "", "", ""], // Baris kosong
+      ["TOTAL PENDAPATAN", "", totalPendapatan, ""],
+      ["Jumlah Transaksi", "", orders.length, ""],
+    ];
+
     let csvContent = "data:text/csv;charset=utf-8," 
-      + [headers, ...rows].map(e => e.join(",")).join("\n");
+      + [headers, ...rows, ...footerRows].map(e => e.join(",")).join("\n");
 
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
@@ -139,6 +149,18 @@ export default function LaporanPage() {
               );
             })}
           </tbody>
+          {orders.length > 0 && (
+            <tfoot className="border-t-4 border-black">
+              <tr className="bg-black text-white font-black uppercase">
+                <td colSpan="3" className="p-4 text-right text-[10px] tracking-widest">
+                  TOTAL PENDAPATAN ({orders.length} TRANSAKSI)
+                </td>
+                <td className="p-4 text-right font-mono text-[15px]">
+                  RP {orders.reduce((acc, curr) => acc + curr.total_price, 0).toLocaleString("id-ID")}
+                </td>
+              </tr>
+            </tfoot>
+          )}
         </table>
         
         {orders.length === 0 && !loading && (
